@@ -19,5 +19,15 @@ def vector_to_matrix(trajectory_vector):
     
     return trajectory_matrix
 
+########
+#最適化結果を各変数のベクトルに変換
+########
+def generate_result(trajectory_vector):
+    
+    trajectory_matrix = trajectory_vector.reshape(p.M, p.N)
+    x, y, theta, phi, v = trajectory_matrix[0], trajectory_matrix[1], trajectory_matrix[2], trajectory_matrix[3], trajectory_matrix[4]
+    
+    return x, y, theta, phi, v
+
 
     
