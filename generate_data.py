@@ -9,7 +9,7 @@ import plot
 import csv
 import random
 
-for i in range(5):
+for k in range(500):
     x_start = (random.uniform(-2, 4), random.uniform(-3, 3))  # Starting node
     x_goal = (random.uniform(27, 32), random.uniform(-3, 3))  # Goal node
 
@@ -17,10 +17,21 @@ for i in range(5):
     theta_goal = random.uniform(-np.pi/2, np.pi/2)
 
     #0.05の確率でゴールのノードをサンプリング
-    rrt_instance = rrt.Rrt(x_start, x_goal, 0.5, 0.05, 10000)
-    path = rrt_instance.planning()
-    processed_path = rrt_instance.utils.post_processing(path)
     
+    #後処理後のパスの長さが3になるならば、棄却しもう一度RRTを実行 
+    while True:
+        rrt_instance = rrt.Rrt(x_start, x_goal, 0.5, 0.05, 10000)
+        path = rrt_instance.planning()
+        processed_path = rrt_instance.utils.post_processing(path)
+        
+        if len(processed_path) == 3:
+            del rrt_instance
+            continue
+        
+        else:
+            break
+        
+    print(len(processed_path))
     """
     print("Sampling count is {}".format(rrt.sampling_number))
     print("Number of path nodes is {}".format(len(path)))
@@ -86,3 +97,5 @@ for i in range(5):
         writer.writerow(theta)
         
     del rrt_instance
+    
+    print("{}完了".format(k))

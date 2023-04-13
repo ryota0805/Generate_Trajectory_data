@@ -152,6 +152,8 @@ class Utils:
                     break
                 else:
                     continue
+            
+            
         processed_path.append(path[-1])
         
         return processed_path

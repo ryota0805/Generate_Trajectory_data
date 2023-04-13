@@ -113,22 +113,27 @@ class Rrt:
 
 #RRTアルゴリズムを実行するmain関数
 def main():
-    x_start = (2, 2)  # Starting node
-    x_goal = (49, 24)  # Goal node
-    
-    #0.05の確率でゴールのノードをサンプリング
-    rrt = Rrt(x_start, x_goal, 0.5, 0.05, 10000)
-    path = rrt.planning()
-    processed_path = rrt.utils.post_processing(path)
-    print("Sampling count is {}".format(rrt.sampling_number))
-    print("Number of path nodes is {}".format(len(path)))
-    print("Number of post-processed path nodes is {}".format(len(processed_path)))
-    #アニメーションの作成
-    if path:
-        rrt.plotting.animation(rrt.vertex, path, "RRT", True)
-        rrt.plotting.animation(rrt.vertex, processed_path, "RRT", False)
-    else:
-        print("No Path Found!")
+    for k in range(500):
+        x_start = (0, 0)  # Starting node
+        x_goal = (30, 0)  # Goal node
+        
+        #0.05の確率でゴールのノードをサンプリング
+        rrt = Rrt(x_start, x_goal, 0.5, 0.05, 10000)
+        path = rrt.planning()
+        #print(path)
+        processed_path = rrt.utils.post_processing(path)
+        #print("Sampling count is {}".format(rrt.sampling_number))
+        #print("Number of path nodes is {}".format(len(path)))
+        print("Number of post-processed path nodes is {}".format(len(processed_path)))
+        print(k)
+        #アニメーションの作成
+        if path:
+            #rrt.plotting.animation(rrt.vertex, path, "RRT", True)
+            #rrt.plotting.animation(rrt.vertex, processed_path, "RRT", False)
+            pass
+        else:
+            print("No Path Found!")
+        del rrt
 
 
         
