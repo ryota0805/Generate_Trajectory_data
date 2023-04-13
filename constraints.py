@@ -30,7 +30,7 @@ def generate_constraints(x_start, x_goal, theta_start, theta_goal):
     for i in range(p.N-1):
         cons = cons + ({'type':'eq', 'fun':lambda x, i = i: x[i+1 + 2 * p.N] - (x[i + 2 * p.N] + x[i + 4 * p.N] * np.tan(x[i+ 3 * p.N]) * p.dt / p.L)},)
 
-    #境界条件(8個)
+    #境界条件(10個)
     #境界条件が設定されている場合は制約条件に加える。
     #x初期条件
     if p.set_cons['initial_x'] == False:

@@ -9,7 +9,7 @@ import plot
 import csv
 import random
 
-for k in range(500):
+for k in range(1):
     x_start = (random.uniform(-2, 4), random.uniform(-3, 3))  # Starting node
     x_goal = (random.uniform(27, 32), random.uniform(-3, 3))  # Goal node
 
@@ -32,15 +32,12 @@ for k in range(500):
             break
         
     print(len(processed_path))
-    """
-    print("Sampling count is {}".format(rrt.sampling_number))
-    print("Number of path nodes is {}".format(len(path)))
-    print("Number of post-processed path nodes is {}".format(len(processed_path)))
     
+    """
     #アニメーションの作成
     if path:
-        rrt.plotting.animation(rrt.vertex, path, "RRT", True)
-        rrt.plotting.animation(rrt.vertex, processed_path, "RRT", False)
+        rrt_instance.plotting.animation(rrt_instance.vertex, path, "RRT", True)
+        rrt_instance.plotting.animation(rrt_instance.vertex, processed_path, "RRT", False)
     else:
         print("No Path Found!")
     """
@@ -54,10 +51,10 @@ for k in range(500):
     #初期軌道作成
     #スプライン補間
     cubicX, cubicY = GenerateInitialPath.cubic_spline(rrt_path)
-
+    print(cubicX)
     #初期条件、終端条件を満たすそれらしい軌道を生成する
     initial_x, initial_y, initial_theta, initial_phi, initial_v = GenerateInitialPath.generate_initialpath(cubicX, cubicY, theta_start, theta_goal)
-
+    print(initial_x)
     trajectory_matrix = np.array([initial_x, initial_y, initial_theta, initial_phi, initial_v])
     trajectory_vector = util.matrix_to_vector(trajectory_matrix)
 
@@ -66,7 +63,7 @@ for k in range(500):
     cons = constraints.generate_constraints(x_start, x_goal, theta_start, theta_goal)
     bounds = constraints.generate_bounds()
     options = {'maxiter':1000}
-
+    print(len(cons))
     #最適化を実行
     result = optimize.minimize(func, trajectory_vector, method='SLSQP', constraints=cons, bounds=bounds, options=options)
 
@@ -82,17 +79,18 @@ for k in range(500):
     #plot.vis_history_v(result.x, range_flag = True)
 
     x, y, _, _, _ = util.generate_result(result.x)
+    print(x)
     theta = [theta_start, theta_goal]
 
-    with open('data/practice/x.csv', 'a', newline='') as f:
+    with open('../data/practice/x.csv', 'a', newline='') as f:
         writer = csv.writer(f)
         writer.writerow(x)
 
-    with open('data//practice/y.csv', 'a', newline='') as f:
+    with open('../data/practice/y.csv', 'a', newline='') as f:
         writer = csv.writer(f)
         writer.writerow(y)
         
-    with open('data/practice/theta.csv', 'a', newline='') as f:
+    with open('../data/practice/theta.csv', 'a', newline='') as f:
         writer = csv.writer(f)
         writer.writerow(theta)
         
