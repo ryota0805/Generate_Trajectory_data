@@ -9,7 +9,7 @@ import plot
 import csv
 import random
 
-for k in range(1):
+for k in range(1000):
     x_start = (random.uniform(-2, 4), random.uniform(-3, 3))  # Starting node
     x_goal = (random.uniform(26, 32), random.uniform(-3, 3))  # Goal node
 
@@ -31,7 +31,7 @@ for k in range(1):
         else:
             break
         
-    print(len(processed_path))
+    print("RRTのノード数:{}".format(len(processed_path)))
     
     """
     #アニメーションの作成
@@ -70,18 +70,18 @@ for k in range(1):
     #最適化結果の表示
     #print(result)
     #plot.vis_path(trajectory_vector)
-    plot.compare_path(trajectory_vector, result.x)
-    plot.compare_history_theta(trajectory_vector, result.x, range_flag = True)
-    plot.compare_history_phi(trajectory_vector, result.x, range_flag = True)
-    plot.compare_history_v(trajectory_vector, result.x, range_flag = True)
+    #plot.compare_path(trajectory_vector, result.x)
+    #plot.compare_history_theta(trajectory_vector, result.x, range_flag = True)
+    #plot.compare_history_phi(trajectory_vector, result.x, range_flag = True)
+    #plot.compare_history_v(trajectory_vector, result.x, range_flag = True)
     #plot.vis_history_theta(result.x, range_flag=True)
     #plot.vis_history_phi(result.x, range_flag=True)
     #plot.vis_history_v(result.x, range_flag = True)
 
     x, y, theta, phi, v = util.generate_result(result.x)
-    print(x, y, theta, phi, v)
 
-
+    print("csvファイルに書き込み中")
+    
     with open('../data/practice/x.csv', 'a', newline='') as f:
         writer = csv.writer(f)
         writer.writerow(x)
@@ -104,4 +104,4 @@ for k in range(1):
         
     del rrt_instance
     
-    print("{}完了".format(k))
+    print("最適化完了数:{}".format(k))
