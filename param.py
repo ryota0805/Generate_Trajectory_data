@@ -17,8 +17,8 @@ class Parameter:
                 'terminal_theta':True, 
                 'initial_phi'   :True, 
                 'terminal_phi'  :True,
-                'initial_v'     :True, 
-                'terminal_v'    :True}
+                'initial_v'     :False, 
+                'terminal_v'    :False}
     
     initial_phi = 0                                             #phi[rad]
     terminal_phi = 0                                            #phi[rad]
@@ -34,10 +34,10 @@ class Parameter:
     y_max = env_data.y_range[1]                                                  #y[m]
     theta_min = -np.pi                                          #theta[rad]
     theta_max = np.pi                                           #tehta[rad]
-    phi_min = -np.pi/4                                          #phi[rad]
-    phi_max = np.pi/4                                           #phi[rad]
+    phi_min = -np.pi/6                                          #phi[rad]
+    phi_max = np.pi/6                                           #phi[rad]
     v_min = 0                                                   #v[m/s]
-    v_max = 3                                                   #v[m/s]
+    v_max = 1.5                                                   #v[m/s]
 
 
     dt = 1                                                      #刻み幅[s]                                             

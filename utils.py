@@ -7,6 +7,7 @@ import math
 import numpy as np
 import os
 import sys
+import copy
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)) +
                 "/../../Sampling_based_Planning/")
@@ -134,7 +135,7 @@ class Utils:
     #pathのノードを減らす後処理
     def post_processing(self, path):
         length = len(path)
-        processed_path = [path[0]]
+        processed_path = [copy.copy(path[0])]
         i, j = 0, 1
         while True:
             start = rrt.Node(path[i])
