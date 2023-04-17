@@ -9,7 +9,7 @@ import plot
 import csv
 import random
 
-for k in range(1000):
+for k in range(10000):
     x_start = (random.uniform(-2, 4), random.uniform(-3, 3))  # Starting node
     x_goal = (random.uniform(26, 32), random.uniform(-3, 3))  # Goal node
 
