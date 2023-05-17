@@ -37,7 +37,7 @@ class Parameter:
     phi_min = -np.pi/6                                          #phi[rad]
     phi_max = np.pi/6                                           #phi[rad]
     v_min = 0                                                   #v[m/s]
-    v_max = 1.5                                                   #v[m/s]
+    v_max = 2                                                   #v[m/s]
 
 
     dt = 1                                                      #刻み幅[s]                                             
