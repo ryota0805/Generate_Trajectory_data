@@ -9,13 +9,21 @@ import env
 ########
 def generate_constraints(x_start, x_goal, theta_start, theta_goal):
     env_data = env.Env()
-    obstacle_list = env_data.obs_circle
+    obs_rectangle = env_data.obs_rectangle
+    obs_circle = env_data.obs_circle
 
     #最初に不等式制約(K×N個)
     cons = ()
-    for k in range(len(obstacle_list)):
+    
+    #矩形の障害物に対する不等式制約
+    for k in range(len(obs_rectangle)):
         for i in range(p.N):
-            cons = cons + ({'type':'ineq', 'fun':lambda x, i = i, k = k: ((x[i] - obstacle_list[k][0]) ** 2 + (x[i + p.N] - obstacle_list[k][1]) ** 2) - (obstacle_list[k][2] + p.robot_size) ** 2},)
+            cons = cons + ({'type':'ineq', 'fun':lambda x, i = i, k = k: (((2*0.8/obs_rectangle[k][2]) ** 10) * (x[i] - (obs_rectangle[k][0] + obs_rectangle[k][2]/2)) ** 10 + ((2*0.95/obs_rectangle[k][3]) ** 10) * (x[i + p.N] - (obs_rectangle[k][1] + obs_rectangle[k][3]/2)) ** 10) - 1},)
+    
+    #円形の障害物に対する不等式制約
+    for k in range(len(obs_circle)):
+        for i in range(p.N):
+            cons = cons + ({'type':'ineq', 'fun':lambda x, i = i, k = k: ((x[i] - obs_circle[k][0]) ** 2 + (x[i + p.N] - obs_circle[k][1]) ** 2) - (obs_circle[k][2] + p.robot_size) ** 2},)
 
     #次にモデルの等式制約(3×(N-1)個)
     #x

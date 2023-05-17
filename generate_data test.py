@@ -14,8 +14,8 @@ for k in range(1):
     x_start = (random.uniform(-2, 4), random.uniform(-3, 3))  # Starting node
     x_goal = (random.uniform(26, 32), random.uniform(-3, 3))  # Goal node
 
-    theta_start = random.uniform(-np.pi/2, np.pi/2)
-    theta_goal = random.uniform(-np.pi/2, np.pi/2)
+    theta_start = random.uniform(np.pi/4, np.pi*3/4)
+    theta_goal = random.uniform(np.pi/4, np.pi*3/4)
     """
     x_start = (0, 0)  # Starting node
     x_goal = (30, 0)  # Goal node
@@ -39,14 +39,15 @@ for k in range(1):
         
     print(len(processed_path))
     
-    """
+    
     #アニメーションの作成
     if path:
         rrt_instance.plotting.animation(rrt_instance.vertex, path, "RRT", True)
         rrt_instance.plotting.animation(rrt_instance.vertex, processed_path, "RRT", False)
     else:
         print("No Path Found!")
-    """
+    
+    
     #ノードの順番を反転させる
     rrt_path = []
     for i in range(len(processed_path)):
@@ -82,12 +83,12 @@ for k in range(1):
     #plot.vis_history_theta(result.x, range_flag=True)
     plot.vis_history_phi(result.x, range_flag=True)
     plot.vis_history_v(result.x, range_flag = True)
-
+    """
     x, y, _, _, _ = util.generate_result(result.x)
     print(x)
     theta = [theta_start, theta_goal]
     print(theta)
-    """
+    
     with open('../data/practice/x.csv', 'a', newline='') as f:
         writer = csv.writer(f)
         writer.writerow(x)
@@ -99,7 +100,8 @@ for k in range(1):
     with open('../data/practice/theta.csv', 'a', newline='') as f:
         writer = csv.writer(f)
         writer.writerow(theta)
-    """
+    
     del rrt_instance
-
+    """
     print("{}完了".format(k))
+    

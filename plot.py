@@ -14,7 +14,8 @@ def vis_env():
     
     env_data = env.Env()
     wall_list = env_data.obs_boundary
-    obstacle_list = env_data.obs_circle
+    obs_rectangle = env_data.obs_rectangle
+    obs_circle = env_data.obs_circle
     
     #wallを配置
     for k in range(len(wall_list)):
@@ -22,8 +23,13 @@ def vis_env():
         ax.add_patch(wall)
     
     #障害物を配置
-    for k in range(len(obstacle_list)):
-        x_o, y_o, r_o = obstacle_list[k][0], obstacle_list[k][1], obstacle_list[k][2],
+    for k in range(len(obs_rectangle)):
+        x0, y0, w, h = obs_rectangle[k][0], obs_rectangle[k][1], obs_rectangle[k][2], obs_rectangle[k][3]
+        rectangle_obstacle = patches.Rectangle((x0, y0), w, h, linewidth=1, edgecolor='black', facecolor='gray')
+        ax.add_patch(rectangle_obstacle)
+        
+    for k in range(len(obs_circle)):
+        x_o, y_o, r_o = obs_circle[k][0], obs_circle[k][1], obs_circle[k][2],
         circle_obstacle = patches.Circle((x_o, y_o), radius=r_o, edgecolor='black', facecolor='gray')
         ax.add_patch(circle_obstacle)
     
@@ -57,7 +63,8 @@ def vis_path(trajectory_vector):
     
     env_data = env.Env()
     wall_list = env_data.obs_boundary
-    obstacle_list = env_data.obs_circle
+    obs_rectangle = env_data.obs_rectangle
+    obs_circle = env_data.obs_circle
     
     #wallを配置
     for k in range(len(wall_list)):
@@ -65,8 +72,13 @@ def vis_path(trajectory_vector):
         ax.add_patch(wall)
     
     #障害物を配置
-    for k in range(len(obstacle_list)):
-        x_o, y_o, r_o = obstacle_list[k][0], obstacle_list[k][1], obstacle_list[k][2],
+    for k in range(len(obs_rectangle)):
+        x0, y0, w, h = obs_rectangle[k][0], obs_rectangle[k][1], obs_rectangle[k][2], obs_rectangle[k][3]
+        rectangle_obstacle = patches.Rectangle((x0, y0), w, h, linewidth=1, edgecolor='black', facecolor='gray')
+        ax.add_patch(rectangle_obstacle)
+        
+    for k in range(len(obs_circle)):
+        x_o, y_o, r_o = obs_circle[k][0], obs_circle[k][1], obs_circle[k][2],
         circle_obstacle = patches.Circle((x_o, y_o), radius=r_o, edgecolor='black', facecolor='gray')
         ax.add_patch(circle_obstacle)
     
@@ -102,7 +114,8 @@ def compare_path(trajectory_vector1, trajectory_vector2):
     
     env_data = env.Env()
     wall_list = env_data.obs_boundary
-    obstacle_list = env_data.obs_circle
+    obs_rectangle = env_data.obs_rectangle
+    obs_circle = env_data.obs_circle
     
     #wallを配置
     for k in range(len(wall_list)):
@@ -110,8 +123,13 @@ def compare_path(trajectory_vector1, trajectory_vector2):
         ax.add_patch(wall)
     
     #障害物を配置
-    for k in range(len(obstacle_list)):
-        x_o, y_o, r_o = obstacle_list[k][0], obstacle_list[k][1], obstacle_list[k][2],
+    for k in range(len(obs_rectangle)):
+        x0, y0, w, h = obs_rectangle[k][0], obs_rectangle[k][1], obs_rectangle[k][2], obs_rectangle[k][3]
+        rectangle_obstacle = patches.Rectangle((x0, y0), w, h, linewidth=1, edgecolor='black', fill=False)
+        ax.add_patch(rectangle_obstacle)
+        
+    for k in range(len(obs_circle)):
+        x_o, y_o, r_o = obs_circle[k][0], obs_circle[k][1], obs_circle[k][2],
         circle_obstacle = patches.Circle((x_o, y_o), radius=r_o, edgecolor='black', facecolor='gray')
         ax.add_patch(circle_obstacle)
     
