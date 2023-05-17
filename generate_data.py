@@ -13,8 +13,8 @@ for k in range(10000):
     x_start = (random.uniform(-2, 4), random.uniform(-3, 3))  # Starting node
     x_goal = (random.uniform(26, 32), random.uniform(-3, 3))  # Goal node
 
-    theta_start = random.uniform(-np.pi/2, np.pi/2)
-    theta_goal = random.uniform(-np.pi/2, np.pi/2)
+    theta_start = random.uniform(np.pi/4, np.pi*3/4)
+    theta_goal = random.uniform(np.pi/4, np.pi*3/4)
 
     #0.05の確率でゴールのノードをサンプリング
     
@@ -82,23 +82,23 @@ for k in range(10000):
 
     print("csvファイルに書き込み中")
     
-    with open('../data/practice/x.csv', 'a', newline='') as f:
+    with open('../data/env2/x.csv', 'a', newline='') as f:
         writer = csv.writer(f)
         writer.writerow(x)
 
-    with open('../data/practice/y.csv', 'a', newline='') as f:
+    with open('../data/env2/y.csv', 'a', newline='') as f:
         writer = csv.writer(f)
         writer.writerow(y)
         
-    with open('../data/practice/theta.csv', 'a', newline='') as f:
+    with open('../data/env2/theta.csv', 'a', newline='') as f:
         writer = csv.writer(f)
         writer.writerow(theta)
         
-    with open('../data/practice/phi.csv', 'a', newline='') as f:
+    with open('../data/env2/phi.csv', 'a', newline='') as f:
         writer = csv.writer(f)
         writer.writerow(phi)
     
-    with open('../data/practice/v.csv', 'a', newline='') as f:
+    with open('../data/env2/v.csv', 'a', newline='') as f:
         writer = csv.writer(f)
         writer.writerow(v)
         

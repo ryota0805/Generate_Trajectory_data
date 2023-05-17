@@ -72,7 +72,7 @@ for k in range(1):
     print(len(cons))
     #最適化を実行
     result = optimize.minimize(func, trajectory_vector, method='SLSQP', constraints=cons, bounds=bounds, options=options)
-
+    """
     #最適化結果の表示
     print(result.x)
     #plot.vis_path(trajectory_vector)
@@ -89,19 +89,19 @@ for k in range(1):
     theta = [theta_start, theta_goal]
     print(theta)
     
-    with open('../data/practice/x.csv', 'a', newline='') as f:
+    with open('../data/env2/x.csv', 'a', newline='') as f:
         writer = csv.writer(f)
         writer.writerow(x)
 
-    with open('../data/practice/y.csv', 'a', newline='') as f:
+    with open('../data/env2/y.csv', 'a', newline='') as f:
         writer = csv.writer(f)
         writer.writerow(y)
         
-    with open('../data/practice/theta.csv', 'a', newline='') as f:
+    with open('../data/env2/theta.csv', 'a', newline='') as f:
         writer = csv.writer(f)
         writer.writerow(theta)
     
     del rrt_instance
-    """
+    
     print("{}完了".format(k))
     
