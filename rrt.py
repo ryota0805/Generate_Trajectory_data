@@ -1,16 +1,8 @@
-"""
-RRT_2D
-@author: huiming zhou
-"""
-
 import os
 import sys
 import math
 import numpy as np
 import matplotlib.pyplot as plt
-
-sys.path.append(os.path.dirname(os.path.abspath(__file__)) +
-                "/../../Sampling_based_Planning/")
 
 import env, plotting, utils
 

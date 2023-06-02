@@ -125,7 +125,7 @@ def compare_path(trajectory_vector1, trajectory_vector2):
     #障害物を配置
     for k in range(len(obs_rectangle)):
         x0, y0, w, h = obs_rectangle[k][0], obs_rectangle[k][1], obs_rectangle[k][2], obs_rectangle[k][3]
-        rectangle_obstacle = patches.Rectangle((x0, y0), w, h, linewidth=1, edgecolor='black', fill=False)
+        rectangle_obstacle = patches.Rectangle((x0, y0), w, h, linewidth=1, edgecolor='black', facecolor='gray')
         ax.add_patch(rectangle_obstacle)
         
     for k in range(len(obs_circle)):

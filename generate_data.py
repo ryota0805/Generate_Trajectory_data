@@ -9,7 +9,7 @@ import plot
 import csv
 import random
 
-for k in range(10000):
+for k in range(9000):
     x_start = (random.uniform(-2, 4), random.uniform(-3, 3))  # Starting node
     x_goal = (random.uniform(26, 32), random.uniform(-3, 3))  # Goal node
 
@@ -18,20 +18,10 @@ for k in range(10000):
 
     #0.05の確率でゴールのノードをサンプリング
     
-    #後処理後のパスの長さが3になるならば、棄却しもう一度RRTを実行 
-    while True:
-        rrt_instance = rrt.Rrt(x_start, x_goal, 0.5, 0.05, 10000)
-        path = rrt_instance.planning()
-        processed_path = rrt_instance.utils.post_processing(path)
+    rrt_instance = rrt.Rrt(x_start, x_goal, 0.5, 0.05, 10000)
+    path = rrt_instance.planning()
         
-        if len(processed_path) == 3:
-            del rrt_instance
-            continue
-        
-        else:
-            break
-        
-    print("RRTのノード数:{}".format(len(processed_path)))
+    print("RRTのノード数:{}".format(len(path)))
     
     """
     #アニメーションの作成
@@ -43,8 +33,8 @@ for k in range(10000):
     """
     #ノードの順番を反転させる
     rrt_path = []
-    for i in range(len(processed_path)):
-        rrt_path.append(list(processed_path[-i-1]))
+    for i in range(len(path)):
+        rrt_path.append(list(path[-i-1]))
         
     #print(rrt_path)
 

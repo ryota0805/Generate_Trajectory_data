@@ -1,16 +1,10 @@
-"""
-utils for collision check
-@author: huiming zhou
-"""
+#RRT用
 
 import math
 import numpy as np
 import os
 import sys
 import copy
-
-sys.path.append(os.path.dirname(os.path.abspath(__file__)) +
-                "/../../Sampling_based_Planning/")
 
 import env
 import rrt

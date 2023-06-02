@@ -10,7 +10,7 @@ import csv
 import random
 
 for k in range(1):
-    
+    """
     x_start = (random.uniform(-2, 4), random.uniform(-3, 3))  # Starting node
     x_goal = (random.uniform(26, 32), random.uniform(-3, 3))  # Goal node
 
@@ -20,9 +20,9 @@ for k in range(1):
     x_start = (0, 0)  # Starting node
     x_goal = (30, 0)  # Goal node
 
-    theta_start = 0
-    theta_goal = 0
-    """
+    theta_start = np.pi/2
+    theta_goal = np.pi*3/4
+    
     #0.05の確率でゴールのノードをサンプリング
     #後処理後のパスの長さが3になるならば、棄却しもう一度RRTを実行 
     while True:
