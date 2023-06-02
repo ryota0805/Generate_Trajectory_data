@@ -24,18 +24,21 @@ class Env:
     @staticmethod
     def obs_rectangle():
         
+        obs_rectangle = []
+        """
         obs_rectangle = [[8.5, -10, 2, 14],
                          [21.5, -4, 2, 14]]
-        
+        """
         return obs_rectangle
 
     @staticmethod
     def obs_circle():
-        """
+        
         obs_cir = [
             [10, -1, 3],
             [20, 1, 3]
         ]
         """
         obs_cir = []
+        """
         return obs_cir
