@@ -10,13 +10,30 @@ import csv
 import random
 
 for k in range(1):
+    x_start = (random.uniform(-2, 4), random.uniform(-9, 9))  # Starting node
+    x_goal = (random.uniform(26, 32), random.uniform(-9, 9))  # Goal node
     
+    if x_start[1] >= 6:
+        theta_start = random.uniform(-np.pi/2, 0)
+    elif -6 < x_start[1] < 6:
+        theta_start = random.uniform(-np.pi/2, np.pi/2)
+    else:
+        theta_start = random.uniform(0, np.pi/2)
+        
+    if x_goal[1] >= 6:
+        theta_goal = random.uniform(0, np.pi/2)
+    elif -6 < x_goal[1] < 6:
+        theta_goal = random.uniform(-np.pi/2, np.pi/2)
+    else:
+        theta_goal = random.uniform(-np.pi/2, 0)
+    
+    """
     x_start = (random.uniform(-2, 4), random.uniform(-3, 3))  # Starting node
     x_goal = (random.uniform(26, 32), random.uniform(-3, 3))  # Goal node
 
     theta_start = random.uniform(-np.pi/2, np.pi/2)
     theta_goal = random.uniform(-np.pi/2, np.pi/2)
-    """
+    
     x_start = (0, 0)  # Starting node
     x_goal = (30, 0)  # Goal node
 
@@ -25,36 +42,34 @@ for k in range(1):
     """
     #0.05の確率でゴールのノードをサンプリング
     #後処理後のパスの長さが3になるならば、棄却しもう一度RRTを実行 
-    while True:
-        rrt_instance = rrt.Rrt(x_start, x_goal, 0.5, 0.05, 10000)
-        path = rrt_instance.planning()
-        processed_path = rrt_instance.utils.post_processing(path)
+    rrt_instance = rrt.Rrt(x_start, x_goal, 0.5, 0.05, 10000)
+    path = rrt_instance.planning()
         
-        if len(processed_path) == 3:
-            del rrt_instance
-            continue
-        
-        else:
-            break
-        
-    print(len(processed_path))
+    print("RRTのノード数:{}".format(len(path)))
     
-    
+    """
     #アニメーションの作成
     if path:
         rrt_instance.plotting.animation(rrt_instance.vertex, path, "RRT", True)
         rrt_instance.plotting.animation(rrt_instance.vertex, processed_path, "RRT", False)
     else:
         print("No Path Found!")
-    
-    
+    """
     #ノードの順番を反転させる
     rrt_path = []
-    for i in range(len(processed_path)):
-        rrt_path.append(list(processed_path[-i-1]))
-        
+    for i in range(len(path)):
+        rrt_path.append(list(path[-i-1]))
+    
+    
+    #アニメーションの作成
+    if path:
+        rrt_instance.plotting.animation(rrt_instance.vertex, path, "RRT", True)
+        #rrt_instance.plotting.animation(rrt_instance.vertex, processed_path, "RRT", False)
+    else:
+        print("No Path Found!")
+    
     #print(rrt_path)
-
+    plot.vis_env()
     #初期軌道作成
     #スプライン補間
     cubicX, cubicY = GenerateInitialPath.cubic_spline(rrt_path)
@@ -76,6 +91,7 @@ for k in range(1):
     #最適化結果の表示
     print(result.x)
     print(func(result.x))
+    plot.vis_env()
     #plot.vis_path(trajectory_vector)
     plot.compare_path(trajectory_vector, result.x)
     plot.compare_history_theta(trajectory_vector, result.x, range_flag = True)

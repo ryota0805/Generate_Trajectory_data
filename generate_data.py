@@ -9,12 +9,23 @@ import plot
 import csv
 import random
 
-for k in range(10000):
-    x_start = (random.uniform(-2, 4), random.uniform(-3, 3))  # Starting node
-    x_goal = (random.uniform(26, 32), random.uniform(-3, 3))  # Goal node
-
-    theta_start = random.uniform(-np.pi/2, np.pi/2)
-    theta_goal = random.uniform(-np.pi/2, np.pi/2)
+for k in range(20000):
+    x_start = (random.uniform(-2, 4), random.uniform(-9, 9))  # Starting node
+    x_goal = (random.uniform(26, 32), random.uniform(-9, 9))  # Goal node
+    
+    if x_start[1] >= 6:
+        theta_start = random.uniform(-np.pi/2, 0)
+    elif -6 < x_start[1] < 6:
+        theta_start = random.uniform(-np.pi/2, np.pi/2)
+    else:
+        theta_start = random.uniform(0, np.pi/2)
+        
+    if x_goal[1] >= 6:
+        theta_goal = random.uniform(0, np.pi/2)
+    elif -6 < x_goal[1] < 6:
+        theta_goal = random.uniform(-np.pi/2, np.pi/2)
+    else:
+        theta_goal = random.uniform(-np.pi/2, 0)
 
     #0.05の確率でゴールのノードをサンプリング
     
@@ -74,27 +85,27 @@ for k in range(10000):
     
     print("csvファイルに書き込み中")
     
-    with open('../data/env1/new_x.csv', 'a', newline='') as f:
+    with open('../data/env3/x.csv', 'a', newline='') as f:
         writer = csv.writer(f)
         writer.writerow(x)
 
-    with open('../data/env1/new_y.csv', 'a', newline='') as f:
+    with open('../data/env3/y.csv', 'a', newline='') as f:
         writer = csv.writer(f)
         writer.writerow(y)
         
-    with open('../data/env1/new_theta.csv', 'a', newline='') as f:
+    with open('../data/env3/theta.csv', 'a', newline='') as f:
         writer = csv.writer(f)
         writer.writerow(theta)
         
-    with open('../data/env1/new_phi.csv', 'a', newline='') as f:
+    with open('../data/env3/phi.csv', 'a', newline='') as f:
         writer = csv.writer(f)
         writer.writerow(phi)
     
-    with open('../data/env1/new_v.csv', 'a', newline='') as f:
+    with open('../data/env3/v.csv', 'a', newline='') as f:
         writer = csv.writer(f)
         writer.writerow(v)
     
-    with open('../data/env1/new_evaluation.csv', 'a', newline='') as f:
+    with open('../data/env3/evaluation.csv', 'a', newline='') as f:
         writer = csv.writer(f)
         writer.writerow(list_evaluation)
         

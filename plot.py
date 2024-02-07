@@ -33,10 +33,11 @@ def vis_env():
         circle_obstacle = patches.Circle((x_o, y_o), radius=r_o, edgecolor='black', facecolor='gray')
         ax.add_patch(circle_obstacle)
     
+    """
     #startとgoalを配置
     ax.scatter([p.initial_x], [p.initial_y], marker='v', color='green', label='start')
     ax.scatter([p.terminal_x], [p.terminal_y], marker='^', color='green', label='goal')
-    
+    """
     
     ax.set_xlabel(r'$x$[m]')
     ax.set_ylabel(r'$y$[m]')
